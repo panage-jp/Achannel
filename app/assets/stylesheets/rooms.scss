@@ -1,3 +1,22 @@
 // Place all the styles related to the Rooms controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+//thread index style
+.room_index {
+  .media {
+    margin-left: 15vw;
+    margin-top: 4vh;
+
+    .media-body {
+      a {
+        font-size: 18px;
+      }
+
+      .content_created_at {
+        color: gray;
+        font-size: 13px;
+      }
+    }
+  }
+}
