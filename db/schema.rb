@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 2019_11_24_102130) do
     t.integer "responce", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "autho_id", default: 0
+    t.string "autho_id", default: "???"
     t.index ["room_id"], name: "index_messages_on_room_id"
   end
 
