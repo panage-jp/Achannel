@@ -1,6 +1,6 @@
 <div class="room_show">
   <div class="title">
-    <h3>タイトルタイトルタイトル</h3>
+    <h3><%=@room.title%></h3>
   </div>
 
   <div class="main-content">
@@ -68,21 +68,24 @@
   </div>
 
   <div class="res_form">
+    <%=form_for @message do |f|%>
     <div class="title">
       レスを投稿する
     </div>
     <div class="main-form">
       <div class="main-form__name">
-        <input placeholder="名前(省略可能)"></input>
+        <%=f.text_field :author, placeholder: "名前(省略可能)"%>
       </div>
       <div class="main-form__password">
-        <input placeholder="パスワード(必須、レス削除、編集に使用)"></input>
+        <%=f.text_field :password, placeholder: "パスワード(必須、レス削除、編集に使用)"%>
       </div>
       <div class="main-form__text">
-        <textarea rows="6" placeholder="投稿内容"></textarea>
+        <%=f.text_area :content, rows: "6", placeholder: "投稿内容"%>
       </div>
-      <button type="submit" class="btn btn-secondary">投稿する</button>
+      <%= f.submit "投稿する", class: "btn btn-secondary"%>
     </div>
+    <%end%>
 
   </div>
+
 </div>
