@@ -49,6 +49,6 @@ test:
 #
 production:
   <<: *default
-  database: Achannel_production
-  username: Achannel
-  password: <%= ENV['ACHANNEL_DATABASE_PASSWORD'] %>
+  adapter: postgresql
+  database: db/production.postgresql
+  url: <%= ENV['DATABASE_URL'] %>
