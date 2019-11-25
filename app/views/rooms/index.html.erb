@@ -30,21 +30,22 @@
     </div>
   </div>
   <div class="res_form">
-    <div class="title">
-      スレッドを作成する
-    </div>
+    <%=form_for @room do |f|%>
     <div class="main-form">
       <div class="main-form__name">
-        <input placeholder="スレタイトル"></input>
+        <%=f.text_field :title, placeholder: "スレタイトル"%>
       </div>
       <div class="main-form__password">
-        <input placeholder="パスワード(必須、スレ削除、編集に使用)"></input>
+        <%=f.text_field :password, placeholder: "パスワード(必須、スレ削除、編集に使用)"%>
       </div>
       <div class="main-form__text">
-        <textarea rows="6" placeholder="1コメ"></textarea>
-      </div>
-      <button type="submit" class="btn btn-secondary">作成する</button>
-    </div>
 
-  </div>
-</div>
+        <%=f.text_area :first_message, rows: "6", placeholder: "1コメ"%>
+        <div>
+
+          <div>
+            <%= f.submit "作成する", class: "btn btn-secondary"%>
+          </div>
+          <%end%>
+        </div>
+      </div>
