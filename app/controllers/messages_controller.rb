@@ -1,4 +1,5 @@
 class MessagesController < ApplicationController
+  before_action :message_password_authenticate,only: [:destroy,:update]
   def create
     @message = Message.new(message_params)
     if @message.save 
@@ -7,6 +8,7 @@ class MessagesController < ApplicationController
   end
 
   def destroy
+    binding.pry
     message = Message.find(params[:id])
     message.content = "このレスは投稿者によって削除されました。"
     message.deleted_or_edited = 1
@@ -42,8 +44,8 @@ class MessagesController < ApplicationController
     autho_id = (0...8).map { o[rand(o.length)] }.join
   end
 
-    def room_password_authenticate
-    if params[:room][:password].to_i != Room.find(params[:id])[:password]
+    def message_password_authenticate
+    if params[:message][:password].to_i != Message.find(params[:id])[:password]
       redirect_to root_path
       flash[:notice] = "パスワードが間違っています"
     end
