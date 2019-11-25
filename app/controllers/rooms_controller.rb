@@ -1,4 +1,6 @@
 class RoomsController < ApplicationController
+  before_action :room_password_authenticate, only: [:update,:destroy]
+  
   def index
     @room = Room.new
     @rooms =Room.all.order(id: "DESC")
@@ -21,9 +23,18 @@ class RoomsController < ApplicationController
   end
 
   def destroy
+    binding.pry
     room = Room.find(params[:id])
     room.destroy
     redirect_to root_path
+  end
+
+  def update
+    room = Room.find(params[:id])
+    room.title = room_params[:title]
+    if room.save
+      redirect_to root_path
+    end
   end
 
   private
@@ -41,6 +52,13 @@ class RoomsController < ApplicationController
     srand(client_id_num)
     o = [('a'..'z'), ('A'..'Z'), ('0'..'9')].map { |i| i.to_a }.flatten
     autho_id = (0...8).map { o[rand(o.length)] }.join
+  end
+#スレッド編集、削除するときにパスワードがあっているかを確認
+  def room_password_authenticate
+    if params[:room][:password].to_i != Room.find(params[:id])[:password]
+      redirect_to root_path
+      flash[:notice] = "パスワードが間違っています"
+    end
   end
 
 end
