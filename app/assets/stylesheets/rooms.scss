@@ -79,6 +79,11 @@
         font-size: 15px;
       }
     }
+
+    .main-content__text {
+      width: 100%;
+      word-break: break-all
+    }
   }
 
   .res_form {
