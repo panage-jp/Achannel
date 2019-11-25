@@ -17,10 +17,3 @@
 //= require_tree .
 //= require jquery3
 //= require jquery_ujs 
-
-
-$(function () {
-  $(window).click(function () {
-    console.log("fff")
-  })
-})
