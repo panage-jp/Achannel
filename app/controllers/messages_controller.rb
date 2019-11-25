@@ -9,6 +9,7 @@ class MessagesController < ApplicationController
   def destroy
     message = Message.find(params[:id])
     message.content = "このレスは投稿者によって削除されました。"
+    message.deleted_or_edited = 1
     if message.save
     
       redirect_to room_path(message.room.id)
@@ -18,6 +19,7 @@ class MessagesController < ApplicationController
   def update
     message = Message.find(params[:id])
     message.content = message_params[:content]
+    message.deleted_or_edited = 2
     if message.save
       redirect_to room_path(message.room.id)
     end

@@ -90,6 +90,10 @@
       width: 100%;
       word-break: break-all
     }
+
+    .red {
+      color: red;
+    }
   }
 
   .res_form {
@@ -116,7 +120,8 @@
     }
   }
 
-  .fa-cog {
+  .fa-cog,
+  .fa-reply {
     cursor: pointer;
   }
 }

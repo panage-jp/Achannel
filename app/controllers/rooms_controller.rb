@@ -13,7 +13,6 @@ class RoomsController < ApplicationController
   end
 
   def create
-    binding.pry
     @room = Room.create(room_params)
     @room_id = @room.id
     @message = Message.new(message_params)
