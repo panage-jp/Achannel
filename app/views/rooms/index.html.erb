@@ -1,4 +1,7 @@
 <div class="room_index">
+  <%@rooms.each do |room|%>
+  <%=render partial: "rooms", locals: {room: room}%>
+  <%end%>
   <div class="media">
     <div class="media-body">
       <a href="/rooms/1">タイトルタイトルタイトルタイトルタイトルタイトルタイトルタイトル(112)</a>
