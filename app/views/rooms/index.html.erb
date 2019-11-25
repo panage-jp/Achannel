@@ -41,6 +41,9 @@
       <div class="main-form__password">
         <%=f.text_field :password, placeholder: "パスワード(必須、スレ削除、編集に使用)"%>
       </div>
+      <div class="main-form__author">
+        <%=f.text_field :author, placeholder: "名前(省略可能)", value: "名無しさん"%>
+      </div>
       <div class="main-form__text">
 
         <%=f.text_area :first_message, rows: "6", placeholder: "1コメ"%>

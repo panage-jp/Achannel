@@ -11,7 +11,9 @@ class RoomsController < ApplicationController
   end
 
   def create
-    @room = Room.new(room_params)
+    binding.pry
+    @room = Room.create(room_params)
+    @room_id = @room.id
     @message = Message.new(message_params)
     if @room.save && @message.save
       redirect_to root_path
@@ -24,7 +26,7 @@ class RoomsController < ApplicationController
     params.require(:room).permit(:title,:password)
   end
   def message_params
-    {content: params["room"][:first_message], author: params["room"][:author],room_id: @room.id, autho_id: autho_id_generate,password: params["room"][:password]}
+    {content: params["room"][:first_message], author: params["room"][:author],room_id: @room_id, autho_id: autho_id_generate,password: params["room"][:password]}
   end
 #クライアントのipアドレスを取得し、投稿者のIDを生成
   def autho_id_generate

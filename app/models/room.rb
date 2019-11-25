@@ -4,4 +4,5 @@ class Room < ApplicationRecord
   has_many :messages
 
   attr_reader :first_message
+  attr_reader :author
 end
