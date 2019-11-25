@@ -2,70 +2,10 @@
   <div class="title">
     <h3><%=@room.title%></h3>
   </div>
+  <%@messages.each_with_index do |message,index|%>
+  <%=render partial: "messages", locals: {message: message,index: index}%>
+  <%end%>
 
-  <div class="main-content">
-    <div class="main-content__title">
-      <span class="num">420</span>
-      <span class="name">名無しさん</span><span class="created_at">2019/11/24(日) 11:05:01.46</span><span
-        class="ID">ID:MsjkQElo0</span><span><i class="fas fa-cog"></i></span>
-    </div>
-    <div class="main-content__resID">
-      >>2
-    </div>
-    <div class="main-content__text">
-      テキストテキストテキストテキストテキスト
-      <br>テキストテキストテキストテキストテキスト
-      <br>テキストテキストテキスト
-    </div>
-  </div>
-
-  <div class="main-content">
-    <div class="main-content__title">
-      <span class="num">420</span>
-      <span class="name">名無しさん</span><span class="created_at">2019/11/24(日) 11:05:01.46</span><span
-        class="ID">ID:MsjkQElo0</span><span><i class="fas fa-cog"></i></span>
-    </div>
-    <div class="main-content__resID">
-      >>2
-    </div>
-    <div class="main-content__text">
-      テキストテキストテキストテキストテキスト
-      <br>テキストテキストテキストテキストテキスト
-      <br>テキストテキストテキスト
-    </div>
-  </div>
-
-  <div class="main-content">
-    <div class="main-content__title">
-      <span class="num">420</span>
-      <span class="name">名無しさん</span><span class="created_at">2019/11/24(日) 11:05:01.46</span><span
-        class="ID">ID:MsjkQElo0</span><span><i class="fas fa-cog"></i></span>
-    </div>
-    <div class="main-content__resID">
-      >>2
-    </div>
-    <div class="main-content__text">
-      テキストテキストテキストテキストテキスト
-      <br>テキストテキストテキストテキストテキスト
-      <br>テキストテキストテキスト
-    </div>
-  </div>
-
-  <div class="main-content">
-    <div class="main-content__title">
-      <span class="num">420</span>
-      <span class="name">名無しさん</span><span class="created_at">2019/11/24(日) 11:05:01.46</span><span
-        class="ID">ID:MsjkQElo0</span><span><i class="fas fa-cog"></i></span>
-    </div>
-    <div class="main-content__resID">
-      >>2
-    </div>
-    <div class="main-content__text">
-      テキストテキストテキストテキストテキスト
-      <br>テキストテキストテキストテキストテキスト
-      <br>テキストテキストテキスト
-    </div>
-  </div>
 
   <div class="res_form">
     <%=form_for @message do |f|%>
@@ -84,6 +24,7 @@
       </div>
       <%= f.submit "投稿する", class: "btn btn-secondary"%>
     </div>
+    <%=f.text_field :room_id, type: "hidden",value: @room.id%>
     <%end%>
 
   </div>
