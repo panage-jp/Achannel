@@ -8,8 +8,11 @@ class RoomsController < ApplicationController
   end
 
   def create
-    @room = Room.create(room_params)
+    @room = Room.new(room_params)
     # @message = Message.create(message_params)
+    if @room.save
+      redirect_to root_path
+    end
   end
 
   private
