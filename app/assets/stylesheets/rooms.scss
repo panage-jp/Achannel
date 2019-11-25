@@ -4,8 +4,10 @@
 
 //thread index style
 .room_index {
+  padding-left: 15vw;
+
   .media {
-    margin-left: 15vw;
+
     margin-top: 4vh;
 
     .media-body {
@@ -16,6 +18,31 @@
       .content_created_at {
         color: gray;
         font-size: 13px;
+      }
+    }
+  }
+
+  .res_form {
+    margin-top: 50px;
+
+
+    .main-form {
+      width: 40vw;
+
+      .main-form__name,
+      .main-form__password {
+        input {
+          width: 100%;
+          margin-top: 5px;
+        }
+      }
+
+      .main-form__text {
+        margin-top: 10px;
+
+        textarea {
+          width: 100%;
+        }
       }
     }
   }
