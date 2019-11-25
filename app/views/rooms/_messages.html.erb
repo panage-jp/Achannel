@@ -41,7 +41,7 @@
             </div>
             <div class="modal-body__password">
               <p>パスワード入力</p>
-              <%=f.text_field :password, placeholder: "パスワードを入力",value: ""%>
+              <%=f.text_field :password, placeholder: "パスワードを入力",value: "",class: "password_revealed", data:{id: index}%>
 
             </div>
 
@@ -52,7 +52,7 @@
 
 
             <%= form_for(message, url:"/messages/#{message.id}",method: :delete) do |form| %>
-            <%=form.text_field :password, class: "password_hidden", type: "hidden", value: ""%>
+            <%=form.text_field :password, class: "password_hidden", type: "hidden", value: "",id: index%>
             <%= form.submit "削除",class: "btn btn-secondary"%>
             <%end%>
 
