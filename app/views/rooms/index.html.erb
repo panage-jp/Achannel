@@ -1,37 +1,8 @@
 <div class="room_index">
-  <%@rooms.each do |room|%>
-  <%=render partial: "rooms", locals: {room: room}%>
+  <%@rooms.each_with_index do |room,index|%>
+  <%=render partial: "rooms", locals: {room: room,index: index}%>
   <%end%>
-  <div class="media">
-    <div class="media-body">
-      <a href="/rooms/1">タイトルタイトルタイトルタイトルタイトルタイトルタイトルタイトル(112)</a>
-      <div class="content_created_at">2019年11月24日 18:42<i class="fas fa-cog"></i></div>
-    </div>
-  </div>
-  <div class="media">
-    <div class="media-body">
-      <a href="/rooms/1">タイトルタイトルタイトルタイトルタイトルタイトルタイトルタイトル(112)</a>
-      <div class="content_created_at">2019年11月24日 18:42<i class="fas fa-cog"></i></div>
-    </div>
-  </div>
-  <div class="media">
-    <div class="media-body">
-      <a href="/rooms/1">タイトルタイトルタイトルタイトルタイトルタイトルタイトルタイトル(112)</a>
-      <div class="content_created_at">2019年11月24日 18:42<i class="fas fa-cog"></i></div>
-    </div>
-  </div>
-  <div class="media">
-    <div class="media-body">
-      <a href="/rooms/1">タイトルタイトルタイトルタイトルタイトルタイトルタイトルタイトル(112)</a>
-      <div class="content_created_at">2019年11月24日 18:42<i class="fas fa-cog"></i></div>
-    </div>
-  </div>
-  <div class="media">
-    <div class="media-body">
-      <a href="/rooms/1">タイトルタイトルタイトルタイトルタイトルタイトルタイトルタイトル(112)</a>
-      <div class="content_created_at">2019年11月24日 18:42<i class="fas fa-cog"></i></div>
-    </div>
-  </div>
+
   <div class="res_form">
     <%=form_for @room do |f|%>
     <div class="main-form">
@@ -42,7 +13,7 @@
         <%=f.text_field :password, placeholder: "パスワード(必須、スレ削除、編集に使用)"%>
       </div>
       <div class="main-form__author">
-        <%=f.text_field :author, placeholder: "名前(省略可能)", value: "名無しさん"%>
+        <%=f.text_field :author, placeholder: "名前", value: "名無しさん"%>
       </div>
       <div class="main-form__text">
 
