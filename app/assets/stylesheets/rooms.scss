@@ -25,13 +25,19 @@
   background-color: #f5f5f5;
   padding: 20px 10px 20px 10px;
   height: calc(100% - 70px);
+  overflow: scroll;
 
   .main-content {
     background-color: #dcdcdc;
     width: 60vw;
 
+
     margin: 8px 0px 8px 0px;
     padding: 5px;
+
+    .main-content__resID {
+      color: blue;
+    }
 
     .main-content__title {
       span {
@@ -42,6 +48,29 @@
       .name {
         color: green;
         font-size: 15px;
+      }
+    }
+  }
+
+  .res_form {
+    margin-top: 50px;
+
+    .main-form {
+      width: 60vw;
+
+      .main-form__name {
+        input {
+          width: 100%;
+          margin-top: 5px;
+        }
+      }
+
+      .main-form__text {
+        margin-top: 10px;
+
+        textarea {
+          width: 100%;
+        }
       }
     }
   }
