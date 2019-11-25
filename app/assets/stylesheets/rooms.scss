@@ -23,17 +23,6 @@
       }
     }
 
-    .modal-body__title,
-    .modal-body__password {
-      p {
-        margin-bottom: 0px;
-        margin-top: 5px;
-      }
-
-      input {
-        width: 70%;
-      }
-    }
 
     .fa-cog {
       cursor: pointer;
@@ -130,4 +119,19 @@
   .fa-cog {
     cursor: pointer;
   }
+}
+
+.modal-body__title,
+.modal-body__password {
+  p {
+    margin-bottom: 0px;
+    margin-top: 5px;
+  }
+
+  input,
+  textarea {
+    width: 70%;
+  }
+
+
 }

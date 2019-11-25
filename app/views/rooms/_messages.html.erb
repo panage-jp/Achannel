@@ -3,7 +3,43 @@
       <span class="num"><%=index + 1%></span>
       <span class="name"><%=message.author%></span><span
         class="created_at"><%=message.created_at.strftime("%Y/%m/%d %H:%M")%></span><span
-        class="ID">ID:<%=message.autho_id%></span><span><i class="fas fa-cog"></i></span>
+        class="ID">ID:<%=message.autho_id%></span><span><i class="fas fa-cog" data-toggle="modal"
+          data-target="#myModal<%=index%>"></i></span>
+      <div class="modal fade" id="myModal<%=index%>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">スレッドの削除またはタイトル編集</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <%=form_for message do |f|%>
+              <%= form_for(message, url:"messages/#{message.id}",method: :delete) do |form| %>
+              <div class="modal-body__title">
+                <p>レス内容</p>
+                <%=f.text_area :content, value: "#{message.content}",rows: "6"%>
+              </div>
+              <div class="modal-body__password">
+                <p>パスワード入力</p>
+                <%=f.text_field :password, placeholder: "パスワードを入力",value: ""%>
+
+              </div>
+
+            </div>
+            <div class="modal-footer">
+              <%= form.submit "削除",class: "btn btn-secondary"%>
+              <%= f.submit "編集", class: "btn btn-primary"%>
+
+              <%end%>
+              <%end%>
+
+
+            </div><!-- /.modal-footer -->
+          </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+      </div><!-- /.modal -->
     </div>
     <%if message.responce != 0%>
     <div class="main-content__resID">
