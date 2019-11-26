@@ -3,15 +3,18 @@
       <span class="num"><%=index + 1%></span>
       <span class="name"><%=message.author%></span><span
         class="created_at"><%=message.created_at.strftime("%Y/%m/%d %H:%M")%></span><span
-        class="ID">ID:<%=message.autho_id%></span>
+        class="ID">ID:<%=message.autho_id%>ip:<%=message.client_ip%></span>
       <%unless message.deleted_or_edited == 1%>
       <span><i class="fas fa-cog" data-toggle="modal" data-target="#myModal<%=index%>"></i></span>
       <span><i class="fas fa-reply" data-toggle="modal" data-target="#myModalReply<%=index%>"></i></span>
       <%end%>
 
       <%if message.responce != 0%>
-      <div class="main-content__resID">
-        >><%=message.responce%> </div> <%end%> <%if message.deleted_or_edited != 1%> <div class="main-content__text">
+      <div class="main-content__resID" id="<%=message.responce%>">
+        >><%=message.responce%> </div>
+      <%end%>
+
+      <%if message.deleted_or_edited != 1%> <div class="main-content__text">
         <%=simple_format message.content%>
       </div>
       <%else%>
@@ -22,83 +25,83 @@
 
     </div>
 
-    <%# 設定ボタンを押した時のモーダル %>
-    <div class="modal fade" id="myModal<%=index%>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">スレッドの削除またはタイトル編集</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <%=form_for message do |f|%>
-
-            <div class="modal-body__title">
-              <p>レス内容</p>
-              <%=f.text_area :content, value: "#{message.content}",rows: "6"%>
-            </div>
-            <div class="modal-body__password">
-              <p>パスワード入力</p>
-              <%=f.text_field :password, placeholder: "パスワードを入力",value: "",class: "password_revealed", data:{id: index}%>
-
-            </div>
-
-          </div>
-          <div class="modal-footer">
-            <%= f.submit "編集", class: "btn btn-primary"%>
-            <%end%>
-
-
-            <%= form_for(message, url:"/messages/#{message.id}",method: :delete) do |form| %>
-            <%=form.text_field :password, class: "password_hidden", type: "hidden", value: "",id: index%>
-            <%= form.submit "削除",class: "btn btn-secondary"%>
-            <%end%>
-
-
-          </div><!-- /.modal-footer -->
-        </div><!-- /.modal-content -->
-      </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
-
-
-    <%# 返信ボタンを押した時のモーダル %>
-    <div class="modal fade" id="myModalReply<%=index%>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel"><%=index+1%>へのクイックリプライ</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <%=form_for @message do |f|%>
-            <div class="modal-body__name">
-              <p>名前</p>
-              <%=f.text_field :password,value: "名無しさん"%>
-            </div>
-            <div class="modal-body__title">
-              <p>レス内容</p>
-              <%=f.text_area :content, value: "",rows: "6"%>
-            </div>
-            <div class="modal-body__password">
-              <p>パスワード入力</p>
-              <%=f.text_field :password, placeholder: "パスワード(必須、レス削除、編集に使用)",value: ""%>
-            </div>
-            <%=f.text_field :responce,value: "#{index+1}",type: "hidden"%>
-
-          </div>
-          <div class="modal-footer">
-            <%= f.submit "投稿", class: "btn btn-primary"%>
-            <%=f.text_field :room_id, type: "hidden",value: @room.id%>
-
-            <%end%>
-
-
-          </div><!-- /.modal-footer -->
-        </div><!-- /.modal-content -->
-      </div><!-- /.modal-dialog -->
-    </div><!-- /.modal -->
   </div>
+  <%# 設定ボタンを押した時のモーダル %>
+  <div class="modal fade" id="myModal<%=index%>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">スレッドの削除またはタイトル編集</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <%=form_for message do |f|%>
+
+          <div class="modal-body__title">
+            <p>レス内容</p>
+            <%=f.text_area :content, value: "#{message.content}",rows: "6"%>
+          </div>
+          <div class="modal-body__password">
+            <p>パスワード入力</p>
+            <%=f.text_field :password, placeholder: "パスワードを入力",value: "",class: "password_revealed", data:{id: index}%>
+
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <%= f.submit "編集", class: "btn btn-primary"%>
+          <%end%>
+
+
+          <%= form_for(message, url:"/messages/#{message.id}",method: :delete) do |form| %>
+          <%=form.text_field :password, class: "password_hidden", type: "hidden", value: "",id: index%>
+          <%= form.submit "削除",class: "btn btn-secondary"%>
+          <%end%>
+
+
+        </div><!-- /.modal-footer -->
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+
+  <%# 返信ボタンを押した時のモーダル %>
+  <div class="modal fade" id="myModalReply<%=index%>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel"><%=index+1%>へのクイックリプライ</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <%=form_for @message do |f|%>
+          <div class="modal-body__name">
+            <p>名前</p>
+            <%=f.text_field :password,value: "名無しさん"%>
+          </div>
+          <div class="modal-body__title">
+            <p>レス内容</p>
+            <%=f.text_area :content, value: "",rows: "6"%>
+          </div>
+          <div class="modal-body__password">
+            <p>パスワード入力</p>
+            <%=f.text_field :password, placeholder: "パスワード(必須、レス削除、編集に使用)",value: ""%>
+          </div>
+          <%=f.text_field :responce,value: "#{index+1}",type: "hidden"%>
+
+        </div>
+        <div class="modal-footer">
+          <%= f.submit "投稿", class: "btn btn-primary"%>
+          <%=f.text_field :room_id, type: "hidden",value: @room.id%>
+
+          <%end%>
+
+
+        </div><!-- /.modal-footer -->
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
