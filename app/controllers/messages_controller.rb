@@ -40,6 +40,7 @@ class MessagesController < ApplicationController
     client_ip = request.remote_ip
     client_id_num = client_ip.delete(".")
     client_id_num.to_i
+    srand(client_id_num)
     begin
       
       srand(client_id_num)
