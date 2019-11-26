@@ -30,7 +30,7 @@ class MessagesController < ApplicationController
 
   private
   def message_params
-    params.require(:message).permit(:name,:password,:content,:responce).merge({autho_id: autho_id_generate, room_id: params["message"][:room_id]}).merge(client_ip: request.remote_ip)
+    params.require(:message).permit(:name,:password,:content,:responce).merge({autho_id: autho_id_generate, room_id: params["message"][:room_id]}).merge(client_ip: request.remote_ip.split(".").join())
   end
 
 
