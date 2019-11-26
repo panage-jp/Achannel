@@ -3,7 +3,7 @@
       <span class="num"><%=index + 1%></span>
       <span class="name"><%=message.author%></span><span
         class="created_at"><%=message.created_at.strftime("%Y/%m/%d %H:%M")%></span><span
-        class="ID">ID:<%=message.autho_id%>ip:<%=message.client_ip%></span>
+        class="ID">ID:<%=message.autho_id%></span>
       <%unless message.deleted_or_edited == 1%>
       <span><i class="fas fa-cog" data-toggle="modal" data-target="#myModal<%=index%>"></i></span>
       <span><i class="fas fa-reply" data-toggle="modal" data-target="#myModalReply<%=index%>"></i></span>
