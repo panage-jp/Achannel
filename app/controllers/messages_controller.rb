@@ -30,14 +30,14 @@ class MessagesController < ApplicationController
 
   private
   def message_params
-    params.require(:message).permit(:name,:password,:content,:responce).merge({autho_id: autho_id_generate, room_id: params["message"][:room_id]}).merge(client_ip: request.env["HTTP_X_FORWARDED_FOR"] || request.remote_ip)
+    params.require(:message).permit(:name,:password,:content,:responce).merge({autho_id: autho_id_generate, room_id: params["message"][:room_id]}).merge(client_ip: request.remote_ip)
   end
 
 
 
 #クライアントのipアドレスを取得し、投稿者のIDを生成
   def autho_id_generate
-    client_ip = request.env["HTTP_X_FORWARDED_FOR"] || request.remote_ip
+    client_ip = request.remote_ip
     client_id_num = client_ip.split(".").join()
     begin
       client_id_num.to_i
