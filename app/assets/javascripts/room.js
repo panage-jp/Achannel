@@ -33,14 +33,20 @@ $(function () {
   })
 
   // インクリメンタルサーチ
-  function appendThread(thread) {
+  function appendThread(index, thread) {
     const html = `  <div class="media">
     <div class="media-body">
-      <a href="/rooms/${thread.id}">${thread.title}(${thread.id})</a>
-      <div class="content_created_at">${thread.created_at}<i class="fas fa-cog"
-          data-toggle="modal" data-target="#myModal<%=index%>"></i></div>
+      <a href="/rooms/${thread.id}">${thread.title}(${thread.res_num})</a>
+      <div class="content_created_at">${thread.created_at}</div>
     </div>
   </div>`
+    threads_list.append(html)
+  }
+
+  function appendMessage(message) {
+    const html = `<div class="media nomessage">
+                  <p >${message}</p>
+                </div>`
     threads_list.append(html)
   }
   const threads_list = $('#thread-search-result');
@@ -61,12 +67,11 @@ $(function () {
       .done(function (threads) {
         threads_list.empty();
         if (threads.length !== 0) {
-          threads.forEach(function (thread) {
-            appendThread(thread);
+          $.each(threads, function (index, thread) {
+            appendThread(index, thread);
           })
         } else {
-          // appendMessage('スレッドが見つかりませんでした');
-          console.log("hhh")
+          appendMessage('スレッドが見つかりませんでした');
         }
       })
       .fail(function () {
