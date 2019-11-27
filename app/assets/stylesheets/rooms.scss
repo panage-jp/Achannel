@@ -90,6 +90,11 @@
     background-color: #dcdcdc;
     width: 60vw;
 
+    @media screen and (max-width: 600px) {
+      width: 100%;
+
+    }
+
 
     margin: 8px 0px 8px 0px;
     padding: 5px;
@@ -125,6 +130,11 @@
 
     .main-form {
       width: 60vw;
+
+      @media screen and (max-width: 600px) {
+        width: 100%;
+
+      }
 
       .main-form__name,
       .main-form__password {
