@@ -10,21 +10,21 @@
     <%=form_for @room do |f|%>
     <div class="main-form">
       <div class="main-form__name">
-        <%=f.text_field :title, placeholder: "スレタイトル"%>
+        <%=f.text_field :title, placeholder: "スレタイトル", id: "submit_title"%>
       </div>
       <div class="main-form__password">
-        <%=f.text_field :password, placeholder: "パスワード(必須、スレ削除、編集に使用)"%>
+        <%=f.text_field :password, placeholder: "パスワード(必須、スレ削除、編集に使用)",id: "submit_password"%>
       </div>
       <div class="main-form__author">
-        <%=f.text_field :author, placeholder: "名前", value: "名無しさん"%>
+        <%=f.text_field :author, placeholder: "名前", value: "名無しさん",id: "submit_name"%>
       </div>
       <div class="main-form__text">
 
-        <%=f.text_area :first_message, rows: "6", placeholder: "1コメ"%>
+        <%=f.text_area :first_message, rows: "6", placeholder: "1コメ",id: "submit_content"%>
         <div>
 
           <div>
-            <%= f.submit "作成する", class: "btn btn-secondary"%>
+            <%= f.submit "作成する", class: "btn btn-secondary ",id: "submit_button"%>
           </div>
 
           <%end%>

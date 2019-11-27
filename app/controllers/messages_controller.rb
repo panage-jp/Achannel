@@ -1,5 +1,7 @@
 class MessagesController < ApplicationController
+  before_action :message_validation, only: [:update,:create]
   before_action :message_password_authenticate,only: [:destroy,:update]
+  
   def create
     @message = Message.new(message_params)
     if @message.save 
@@ -8,12 +10,10 @@ class MessagesController < ApplicationController
   end
 
   def destroy
-    binding.pry
     message = Message.find(params[:id])
     message.content = "このレスは投稿者によって削除されました。"
     message.deleted_or_edited = 1
     if message.save
-    
       redirect_to room_path(message.room.id)
     end
   end
@@ -50,10 +50,23 @@ class MessagesController < ApplicationController
     end
   end
 
-    def message_password_authenticate
+  # メッセージ編集、削除時にパスワードがあっているかを確認
+  def message_password_authenticate
     if params[:message][:password].to_i != Message.find(params[:id])[:password]
-      redirect_to root_path
+      redirect_to room_path(Message.find(params[:id])[:room_id])
       flash[:notice] = "パスワードが間違っています"
+    end
+  end
+# メッセージ編集、リプライ投稿じの内容のバリデーション
+  def message_validation
+    if message_params[:content] == ""
+      flash[:notice] = "メッセージが入力されていません。"
+      begin
+        redirect_to room_path(params["message"][:room_id])
+      rescue
+        redirect_to room_path(Message.find(params[:id])[:room_id])
+      end
+      
     end
   end
 end

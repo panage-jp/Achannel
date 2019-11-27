@@ -14,15 +14,15 @@
     </div>
     <div class="main-form">
       <div class="main-form__name">
-        <%=f.text_field :author, placeholder: "名前"%>
+        <%=f.text_field :author, placeholder: "名前",id: "submit_name"%>
       </div>
       <div class="main-form__password">
-        <%=f.text_field :password, placeholder: "パスワード(必須、レス削除、編集に使用)"%>
+        <%=f.text_field :password, placeholder: "パスワード(必須、レス削除、編集に使用)",id: "submit_password"%>
       </div>
       <div class="main-form__text">
-        <%=f.text_area :content, rows: "6", placeholder: "投稿内容"%>
+        <%=f.text_area :content, rows: "6", placeholder: "投稿内容",id: "submit_content"%>
       </div>
-      <%= f.submit "投稿する", class: "btn btn-secondary"%>
+      <%= f.submit "投稿する", class: "btn btn-secondary",id: "submit_button"%>
     </div>
     <%=f.text_field :room_id, type: "hidden",value: @room.id%>
     <%end%>

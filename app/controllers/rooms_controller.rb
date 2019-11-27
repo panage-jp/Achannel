@@ -1,4 +1,5 @@
 class RoomsController < ApplicationController
+  before_action :room_validation, only: [:update]
   before_action :room_password_authenticate, only: [:update,:destroy]
   
   def index
@@ -35,6 +36,9 @@ class RoomsController < ApplicationController
     end
   end
 
+  
+  
+  
   private
 
   def room_params
@@ -65,8 +69,16 @@ class RoomsController < ApplicationController
 #スレッド編集、削除するときにパスワードがあっているかを確認
   def room_password_authenticate
     if params[:room][:password].to_i != Room.find(params[:id])[:password]
-      redirect_to root_path
       flash[:notice] = "パスワードが間違っています"
+      redirect_to root_path
+    end
+  end
+
+  # スレッド編集時にタイトルが入力されているか。
+  def room_validation
+    if room_params[:title] == ""
+      flash[:notice] = "タイトルを入力してください。"
+      redirect_to root_path
     end
   end
 
