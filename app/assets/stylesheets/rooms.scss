@@ -55,6 +55,11 @@
     .main-form {
       width: 40vw;
 
+      @media screen and (max-width: 600px) {
+        width: 100%;
+
+      }
+
       .main-form__name,
       .main-form__password,
       .main-form__author {
