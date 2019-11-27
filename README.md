@@ -1,24 +1,16 @@
-# README
+# エイチームウィンターインターン課題アプリ
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## 主な機能、概要
 
-Things you may want to cover:
+- 簡単な掲示板アプリ
+- スレッドの作成＆変更、一覧表示、スレッド削除機能
+- スレッド内での発言、返信機能、発言削除機能
+- クライアント IP を用いた userID 自動生成機能
+- 非同期通信によるスレッド検索機能
 
-* Ruby version
+## 使ったツール、gem、フレームワーク等
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+- Ruby on Rails
+- js(jquery,ajax)
+- heroku(デプロイ)
+- mysql
