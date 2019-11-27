@@ -4,7 +4,7 @@ class RoomsController < ApplicationController
   
   def index
     @room = Room.new
-    @rooms = Room.search_threads(params)
+    @rooms = Room.search_threads(params).order(created_at: "DESC")
     respond_to do |format|
       format.html
       format.json
