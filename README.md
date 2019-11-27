@@ -14,3 +14,4 @@
 - js(jquery,ajax)
 - heroku(デプロイ)
 - mysql
+- bootstrap(マークアップ)
