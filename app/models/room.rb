@@ -5,4 +5,8 @@ class Room < ApplicationRecord
 
   attr_reader :first_message
   attr_reader :author
+
+    def self.search_threads(params)
+    where("title LIKE(?)", "#{params[:keyword]}%")
+  end
 end

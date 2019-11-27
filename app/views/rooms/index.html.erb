@@ -1,7 +1,9 @@
 <div class="room_index">
-  <%@rooms.each_with_index do |room,index|%>
-  <%=render partial: "rooms", locals: {room: room,index: index}%>
-  <%end%>
+  <div id="thread-search-result">
+    <%@rooms.each_with_index do |room,index|%>
+    <%=render partial: "rooms", locals: {room: room,index: index}%>
+    <%end%>
+  </div>
 
   <div class="res_form">
     <div class="res_form__title">

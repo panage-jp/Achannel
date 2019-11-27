@@ -4,7 +4,20 @@ class RoomsController < ApplicationController
   
   def index
     @room = Room.new
-    @rooms =Room.all.order(id: "DESC")
+    # @rooms =Room.all.order(id: "DESC")
+    @rooms = Room.search_threads(params)
+    respond_to do |format|
+      format.html
+      format.json
+    end
+  end
+
+  def serch
+    @rooms = Room.search_threads(params)
+    respond_to do |format|
+      format.html
+      format.json
+    end
   end
 
   def show
