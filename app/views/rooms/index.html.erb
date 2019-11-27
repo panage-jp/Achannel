@@ -1,34 +1,46 @@
-<div class="room_index">
-  <div id="thread-search-result">
+<div class="room_index row">
+  <div class="col-md-1">
+  </div>
+  <div class="contents_left col-md-4">
     <%@rooms.each_with_index do |room,index|%>
     <%=render partial: "rooms", locals: {room: room,index: index}%>
     <%end%>
-  </div>
 
-  <div class="res_form">
-    <div class="res_form__title">
-      スレッドを作成
-    </div>
-    <%=form_for @room do |f|%>
-    <div class="main-form">
-      <div class="main-form__name">
-        <%=f.text_field :title, placeholder: "スレタイトル", id: "submit_title"%>
+    <div class="res_form">
+      <div class="res_form__title">
+        スレッドを作成
       </div>
-      <div class="main-form__password">
-        <%=f.text_field :password, placeholder: "パスワード(必須、スレ削除、編集に使用)",id: "submit_password"%>
-      </div>
-      <div class="main-form__author">
-        <%=f.text_field :author, placeholder: "名前", value: "名無しさん",id: "submit_name"%>
-      </div>
-      <div class="main-form__text">
+      <%=form_for @room do |f|%>
+      <div class="main-form">
+        <div class="main-form__name">
+          <%=f.text_field :title, placeholder: "スレタイトル", id: "submit_title"%>
+        </div>
+        <div class="main-form__password">
+          <%=f.text_field :password, placeholder: "パスワード(必須、スレ削除、編集に使用)",id: "submit_password"%>
+        </div>
+        <div class="main-form__author">
+          <%=f.text_field :author, placeholder: "名前", value: "名無しさん",id: "submit_name"%>
+        </div>
+        <div class="main-form__text">
 
-        <%=f.text_area :first_message, rows: "6", placeholder: "1コメ",id: "submit_content"%>
-        <div>
-
+          <%=f.text_area :first_message, rows: "6", placeholder: "1コメ",id: "submit_content"%>
           <div>
-            <%= f.submit "作成する", class: "btn btn-secondary ",id: "submit_button"%>
-          </div>
 
-          <%end%>
+            <div>
+              <%= f.submit "作成する", class: "btn btn-secondary ",id: "submit_button thread_create"%>
+            </div>
+
+            <%end%>
+          </div>
         </div>
       </div>
+    </div>
+  </div>
+  <div class="col-md-3">
+  </div>
+  <div class="contents_right col-md-3 col-sm-0">
+    <a href="http://www.doggycom.com/" target="_blank">
+      <img src="/assets/pag_banner.jpg">
+    </a>
+  </div>
+</div>

@@ -9,7 +9,7 @@
 
 //thread index style
 .room_index {
-  padding-left: 15vw;
+  width: 100%;
   height: calc(100% - 70px);
   overflow: scroll;
 
@@ -35,6 +35,15 @@
 
     .fa-cog {
       cursor: pointer;
+    }
+  }
+
+  .contents_right {
+    margin-top: 4vh;
+
+    img {
+      width: 100%;
+      height: auto;
     }
   }
 
