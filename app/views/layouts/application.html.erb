@@ -15,15 +15,17 @@
   </head>
 
   <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light nav_fixed">
-      <a class="navbar-brand" href="/">Aちゃんねる</a>
+    <nav class="navbar navbar-expand-lg bg-primary nav_fixed">
+      <a class="navbar-brand text-light" href="/">Aちゃんねる</a>
+      <% if controller.controller_name == 'rooms' && controller.action_name == 'index' %>
       <form class="form-inline my-2 my-lg-0">
         <input type="search" class="form-control mr-sm-2" placeholder="検索..." aria-label="検索...">
-        <button type="submit" class="btn btn-outline-success my-2 my-sm-0">検索</button>
+        <button type="submit" class="btn btn-outline-light my-2 my-sm-0">検索</button>
       </form>
+      <%end%>
     </nav>
     <%if flash[:notice]%>
-    <div class="flash_message bg-primary">
+    <div class="flash_message bg-info">
       <%=flash[:notice]%>
     </div>
     <%end%>
